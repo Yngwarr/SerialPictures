@@ -49,6 +49,7 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "Image Files|*.bmp;*.jpg;*.gif;*.png|All files|*.*";
             // 
             // openBtn
             // 
