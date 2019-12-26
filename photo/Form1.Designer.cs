@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.openBtn = new System.Windows.Forms.Button();
+            this.recvBtn = new System.Windows.Forms.Button();
+            this.serialPort = new System.IO.Ports.SerialPort(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,7 +45,7 @@
             this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(801, 375);
+            this.pictureBox.Size = new System.Drawing.Size(801, 398);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
@@ -62,15 +65,35 @@
             this.openBtn.UseVisualStyleBackColor = true;
             this.openBtn.Click += new System.EventHandler(this.openBtn_Click);
             // 
+            // recvBtn
+            // 
+            this.recvBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.recvBtn.Location = new System.Drawing.Point(0, 404);
+            this.recvBtn.Name = "recvBtn";
+            this.recvBtn.Size = new System.Drawing.Size(800, 23);
+            this.recvBtn.TabIndex = 2;
+            this.recvBtn.Text = "Receive";
+            this.recvBtn.UseVisualStyleBackColor = true;
+            this.recvBtn.Click += new System.EventHandler(this.recvBtn_Click);
+            // 
+            // serialPort
+            // 
+            this.serialPort.BaudRate = 38400;
+            this.serialPort.PortName = "COM6";
+            this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.recvBtn);
             this.Controls.Add(this.openBtn);
             this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
@@ -81,6 +104,8 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button openBtn;
+        private System.Windows.Forms.Button recvBtn;
+        private System.IO.Ports.SerialPort serialPort;
     }
 }
 
