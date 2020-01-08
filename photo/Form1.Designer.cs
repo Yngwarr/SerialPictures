@@ -32,8 +32,9 @@
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.openBtn = new System.Windows.Forms.Button();
-            this.recvBtn = new System.Windows.Forms.Button();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
+            this.comboBox_baud = new System.Windows.Forms.ComboBox();
+            this.comboBox_port = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             this.pictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox.Location = new System.Drawing.Point(0, 0);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(801, 398);
+            this.pictureBox.Size = new System.Drawing.Size(228, 177);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             // 
@@ -57,24 +58,13 @@
             // openBtn
             // 
             this.openBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.openBtn.Location = new System.Drawing.Point(0, 427);
+            this.openBtn.Location = new System.Drawing.Point(0, 223);
             this.openBtn.Name = "openBtn";
-            this.openBtn.Size = new System.Drawing.Size(800, 23);
+            this.openBtn.Size = new System.Drawing.Size(227, 23);
             this.openBtn.TabIndex = 1;
             this.openBtn.Text = "Open...";
             this.openBtn.UseVisualStyleBackColor = true;
             this.openBtn.Click += new System.EventHandler(this.openBtn_Click);
-            // 
-            // recvBtn
-            // 
-            this.recvBtn.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.recvBtn.Location = new System.Drawing.Point(0, 404);
-            this.recvBtn.Name = "recvBtn";
-            this.recvBtn.Size = new System.Drawing.Size(800, 23);
-            this.recvBtn.TabIndex = 2;
-            this.recvBtn.Text = "Receive";
-            this.recvBtn.UseVisualStyleBackColor = true;
-            this.recvBtn.Click += new System.EventHandler(this.recvBtn_Click);
             // 
             // serialPort
             // 
@@ -82,12 +72,39 @@
             this.serialPort.PortName = "COM6";
             this.serialPort.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
+            // comboBox_baud
+            // 
+            this.comboBox_baud.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.comboBox_baud.FormattingEnabled = true;
+            this.comboBox_baud.Items.AddRange(new object[] {
+            "1200",
+            "2400",
+            "4800",
+            "9600",
+            "19200",
+            "38400"});
+            this.comboBox_baud.Location = new System.Drawing.Point(0, 202);
+            this.comboBox_baud.Name = "comboBox_baud";
+            this.comboBox_baud.Size = new System.Drawing.Size(227, 21);
+            this.comboBox_baud.TabIndex = 2;
+            // 
+            // comboBox_port
+            // 
+            this.comboBox_port.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.comboBox_port.FormattingEnabled = true;
+            this.comboBox_port.Location = new System.Drawing.Point(0, 181);
+            this.comboBox_port.Name = "comboBox_port";
+            this.comboBox_port.Size = new System.Drawing.Size(227, 21);
+            this.comboBox_port.TabIndex = 3;
+            this.comboBox_port.SelectedIndexChanged += new System.EventHandler(this.comboBox_port_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.recvBtn);
+            this.ClientSize = new System.Drawing.Size(227, 246);
+            this.Controls.Add(this.comboBox_port);
+            this.Controls.Add(this.comboBox_baud);
             this.Controls.Add(this.openBtn);
             this.Controls.Add(this.pictureBox);
             this.Name = "Form1";
@@ -104,8 +121,9 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button openBtn;
-        private System.Windows.Forms.Button recvBtn;
         private System.IO.Ports.SerialPort serialPort;
+        private System.Windows.Forms.ComboBox comboBox_baud;
+        private System.Windows.Forms.ComboBox comboBox_port;
     }
 }
 

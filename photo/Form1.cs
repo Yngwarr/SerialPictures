@@ -103,10 +103,11 @@ namespace photo
             //Console.Write(indata);
             char[] inBuf = new char[INBUF_SIZE];
             int bytesRead = 0;
-            int i;
+            int i, rd = 0;
             switch (state) {
                 case State.Idle:
-                    sp.Read(inBuf, 0, 9);
+                    rd = 0;
+                    while (rd < 9) rd += sp.Read(inBuf, rd, 9-rd);
                     string inb = new string(inBuf, 0, 9);
                     if (inb != "INCOMING\n") {
                         sp.ReadExisting();
@@ -141,12 +142,22 @@ namespace photo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            serialPort.Open();
+            comboBox_port.Items.AddRange(SerialPort.GetPortNames());
+            comboBox_baud.SelectedIndex = 3;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             serialPort.Close();
+        }
+
+        private void comboBox_port_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (serialPort.IsOpen) serialPort.Close();
+            serialPort.BaudRate = Convert.ToInt32(comboBox_baud.SelectedItem);
+            serialPort.PortName = comboBox_port.SelectedItem.ToString();
+            Console.WriteLine($"{serialPort.PortName}, {serialPort.BaudRate}");
+            serialPort.Open();
         }
     }
 }
